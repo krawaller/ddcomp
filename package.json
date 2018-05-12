@@ -1,0 +1,21 @@
+{
+  "name": "ddcomp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "play": "ts-node play"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "devDependencies": {
+    "ts-node": "^6.0.3",
+    "typescript": "^2.8.3"
+  }
+}
