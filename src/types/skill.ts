@@ -11,7 +11,9 @@ export type SkillName =
   | 'combatReflexes'
   | 'counter'
   | 'dauntless'
+  | 'deadEyeShot'
   | 'decay'
+  | 'dopesmoker'
   | 'drainLife'
   | 'exterminator'
   | 'exploit'
@@ -21,22 +23,26 @@ export type SkillName =
   | 'foeKiller'
   | 'goblinSlayer'
   | 'gourmet'
+  | 'illusoryDouble'
   | 'immunity'
   | 'inquisitor'
   | 'intimidate'
   | 'levitate'
   | 'looter'
+  | 'lurker'
   | 'lycanthropy'
   | 'magicMissile'
   | 'martialDiscipline'
   | 'meditation'
   | 'mendWounds'
+  | 'misdirection'
   | 'mistForm'
   | 'mysticShield'
   | 'performance'
   | 'provoke'
   | 'rage'
   | 'rebuke'
+  | 'repulsion'
   | 'riverRat'
   | 'shieldwall'
   | 'shockWave'
@@ -46,6 +52,7 @@ export type SkillName =
   | 'streetwise'
   | 'track'
   | 'transmute'
+  | 'transcendence'
   | 'voidwalker'
   | 'warding'
   ;
@@ -55,6 +62,7 @@ export type RawSkill<T = SkillName> = {
   xp: number
   classes?: SomeClasses
   stats?: Partial<HeroStats>
+  andStats?: Partial<HeroStats>
   maxStats?: Partial<HeroStats>
   characters?: SomeHeroes
   in: Partial<{

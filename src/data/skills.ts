@@ -18,7 +18,7 @@ export const rawSkills: RawSkillBook = {
     name: 'blackMarket',
     xp: 8,
     classes: {merchant: true, rogue: true},
-    in: {base: true}
+    in: {base: true, psychos: true}
   },
   bloodCurse: {
     name: 'bloodCurse',
@@ -42,7 +42,7 @@ export const rawSkills: RawSkillBook = {
     name: 'claws',
     xp: 6,
     classes: {reptilian: true, warlock: true, lycanthrope: true},
-    in: {adventurer: true}
+    in: {adventurer: true, psychos: true}
   },
   combatReflexes: {
     name: 'combatReflexes',
@@ -54,7 +54,7 @@ export const rawSkills: RawSkillBook = {
     name: 'counter',
     xp: 10,
     stats: {AGI: 8},
-    in: {base: true}
+    in: {base: true, psychos: true}
   },
   dauntless: {
     name: 'dauntless',
@@ -62,11 +62,23 @@ export const rawSkills: RawSkillBook = {
     stats: {MRL: 8},
     in: {base: true}
   },
+  deadEyeShot: {
+    name: 'deadEyeShot',
+    xp: 13,
+    classes: {hunter: true, militant: true, wild: true},
+    in: {psychos: true}
+  },
   decay: {
     name: 'decay',
     xp: 8,
     classes: {warlock: true},
     in: {base: true}
+  },
+  dopesmoker: {
+    name: 'dopesmoker',
+    xp: 6,
+    stats: {MAG: 6},
+    in: {psychos: true}
   },
   drainLife: {
     name: 'drainLife',
@@ -84,7 +96,7 @@ export const rawSkills: RawSkillBook = {
     name: 'exploit',
     xp: 10,
     classes: {fighter: true, hunter: true, militant: true, rogue: true},
-    in: {promo: true}
+    in: {promo: true, psychos: true}
   },
   ferociousCharge: {
     name: 'ferociousCharge',
@@ -102,7 +114,7 @@ export const rawSkills: RawSkillBook = {
     name: 'findWeakness',
     xp: 8,
     classes: {fighter: true, hunter: true, wild: true},
-    in: {base: true}
+    in: {base: true, psychos: true}
   },
   foeKiller: {
     name: 'foeKiller',
@@ -121,6 +133,12 @@ export const rawSkills: RawSkillBook = {
     xp: 6,
     maxStats: {MRL: 9},
     in: {base: true, promo: true}
+  },
+  illusoryDouble: {
+    name: 'illusoryDouble',
+    xp: 10,
+    classes: {reptilian: true, warlock: true},
+    in: {psychos: true}
   },
   immunity: {
     name: 'immunity',
@@ -150,7 +168,13 @@ export const rawSkills: RawSkillBook = {
     name: 'looter',
     xp: 8,
     classes: {merchant: true, rogue: true},
-    in: {base: true}
+    in: {base: true, psychos: true}
+  },
+  lurker: {
+    name: 'lurker',
+    xp: 6,
+    andStats: {AGI: 7, PER: 7},
+    in: {psychos: true}
   },
   lycanthropy: {
     name: 'lycanthropy',
@@ -168,7 +192,7 @@ export const rawSkills: RawSkillBook = {
     name: 'martialDiscipline',
     xp: 8,
     classes: {militant: true, fighter: true},
-    in: {adventurer: true}
+    in: {adventurer: true, psychos: true}
   },
   meditation: {
     name: 'meditation',
@@ -181,6 +205,12 @@ export const rawSkills: RawSkillBook = {
     xp: 8,
     classes: {scholar: true, wild: true},
     in: {base: true}
+  },
+  misdirection: {
+    name: 'misdirection',
+    xp: 8,
+    classes: {performer: true, reptilian: true, wizard: true},
+    in: {psychos: true}
   },
   mistForm: {
     name: 'mistForm',
@@ -198,7 +228,7 @@ export const rawSkills: RawSkillBook = {
     name: 'performance',
     xp: 6,
     classes: {performer: true},
-    in: {adventurer: true}
+    in: {adventurer: true, psychos: true}
   },
   provoke: {
     name: 'provoke',
@@ -217,6 +247,12 @@ export const rawSkills: RawSkillBook = {
     xp: 10,
     classes: {puritan: true, warlock: true},
     in: {base: true}
+  },
+  repulsion: {
+    name: 'repulsion',
+    xp: 6,
+    classes: {wizard: true},
+    in: {psychos: true}
   },
   riverRat: {
     name: 'riverRat',
@@ -265,6 +301,12 @@ export const rawSkills: RawSkillBook = {
     xp: 6,
     classes: {hunter: true, wild: true},
     in: {base: true}
+  },
+  transcendence: {
+    name: 'transcendence',
+    xp: 6,
+    stats: {MRL: 9, MAG: 9},
+    in: {psychos: true}
   },
   transmute: {
     name: 'transmute',
