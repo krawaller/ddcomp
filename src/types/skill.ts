@@ -1,4 +1,4 @@
-import { HeroStats, HeroClasses, HeroBase, Release, SomeHeroes } from './';
+import { HeroStats, SomeClasses, HeroBase, Release, SomeHeroes } from './';
 
 export type SkillName =
   | 'alchemy'
@@ -53,7 +53,7 @@ export type SkillName =
 export type RawSkill<T = SkillName> = {
   name: T
   xp: number
-  classes?: HeroClasses
+  classes?: SomeClasses
   stats?: Partial<HeroStats>
   maxStats?: Partial<HeroStats>
   characters?: SomeHeroes

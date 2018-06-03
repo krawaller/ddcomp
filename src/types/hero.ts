@@ -1,4 +1,4 @@
-import {SkillBook, SkillName, Release, SomeSkills} from './';
+import {SkillBook, SkillName, Release, SomeSkills, SomeClasses, HeroClassName} from './';
 
 export type HeroStats = {
   AGI: number,
@@ -30,30 +30,9 @@ export type HeroBase =
   | 'voidWitch'
   ;
 
-export type HeroClassName =
-  | 'fighter'
-  | 'human'
-  | 'hunter'
-  | 'lycanthrope'
-  | 'merchant'
-  | 'militant'
-  | 'performer'
-  | 'puritan'
-  | 'reptilian'
-  | 'rogue'
-  | 'scholar'
-  | 'wild'
-  | 'warlock'
-  | 'wizard'
-  ;
-
-export type HeroClasses = Partial<{
-  [key in HeroClassName]: boolean
-}>;
-
 export type Hero<T = HeroClassName> = {
   name: T
-  classes: HeroClasses
+  classes: SomeClasses
   stats: HeroStats
   xp: number
   startSkills: SomeSkills

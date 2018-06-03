@@ -1,4 +1,4 @@
-import { Classes, Class, HeroClassName, HeroBase } from '../types';
+import { Classes, Class, HeroBase } from '../types';
 import { heroes, skills } from './';
 
 export const classes = Object.keys(heroes).reduce(
@@ -6,6 +6,7 @@ export const classes = Object.keys(heroes).reduce(
     (classMem, className) => ({
       ...classMem,
       [className]: {
+        name: className,
         heroes: {
           ...(classMem[className]||{}).heroes || {},
           [heroName]: true
@@ -27,4 +28,4 @@ export const classes = Object.keys(heroes).reduce(
     heroMem
   ),
   {}
-);
+) as Classes;
