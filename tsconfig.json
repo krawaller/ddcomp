@@ -1,11 +1,25 @@
 {
   "compilerOptions": {
+    "target": "es5",
+    "lib": ["es5", "es6", "es7", "es2017", "dom"],
+    "sourceMap": true,
+    "allowJs": false,
     "jsx": "react",
-    "emitDecoratorMetadata": true,
+    "moduleResolution": "node",
+    "rootDirs": ["src"],
+    "baseUrl": "src",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "target": "ES5",
-    "types": [
-      "react", "react-dom", "react-router-dom"
-    ]
-  }
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "build", "scripts"]
 }
