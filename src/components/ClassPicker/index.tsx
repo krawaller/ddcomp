@@ -7,16 +7,16 @@ import { MenuItem, Icon, Button } from '@blueprintjs/core'
 
 import produce from 'immer'
 
-const ClassSelectInner = MultiSelect.ofType<HeroClassName>()
+const ClassPickerInner = MultiSelect.ofType<HeroClassName>()
 
 const classList = Object.keys(classes).sort() as HeroClassName[]
 
-type ClassSelectProps = {
+type ClassPickerProps = {
   checked: HeroClassName[]
   set: (v: any) => void
 }
 
-export const ClassSelect: React.FunctionComponent<ClassSelectProps> = props => {
+export const ClassPicker: React.FunctionComponent<ClassPickerProps> = props => {
   const { set, checked } = props
 
   const onRemove = (evt: any, idx: number) => {
@@ -47,7 +47,7 @@ export const ClassSelect: React.FunctionComponent<ClassSelectProps> = props => {
   )
 
   return (
-    <ClassSelectInner
+    <ClassPickerInner
       items={classList}
       selectedItems={checked}
       onItemSelect={onSelect}

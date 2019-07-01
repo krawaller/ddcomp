@@ -1,18 +1,20 @@
 import React from 'react'
 import { HeroStats } from '../../types'
-import css from './stats.css'
-import { Stat } from '../stat'
+import css from './StatsManipulator.css'
+import { SingleStat } from './SingleStat/index'
 import produce from 'immer'
 
-type StatsProps = {
+type StatsManipulator = {
   stats: HeroStats
   set: (stats: HeroStats) => void
 }
 
-export const Stats: React.FunctionComponent<StatsProps> = props => {
+export const StatsManipulator: React.FunctionComponent<
+  StatsManipulator
+> = props => {
   const { stats, set } = props
   const statComps = Object.entries(stats).map(([name, val]) => (
-    <Stat
+    <SingleStat
       key={name}
       name={name}
       value={val}

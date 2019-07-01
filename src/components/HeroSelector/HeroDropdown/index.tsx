@@ -1,33 +1,24 @@
-import React, { useState, useCallback } from 'react'
+import React from 'react'
 import { Select } from '@blueprintjs/select'
 import { Button, MenuItem } from '@blueprintjs/core'
-import { Hero } from 'types'
-import { heroes } from '../../data/index'
+import { Hero } from '../../../types'
+import { heroList } from '../../../data'
 
-type HeroSelectDropdownProps = {
+type HeroDropdownProps = {
   set: (hero: Hero) => void
+  value: Hero
 }
 
-const HeroSelectDropdownInner = Select.ofType<Hero<any>>()
+const HeroDropdownInner = Select.ofType<Hero>()
 
-const heroList = Object.values(heroes)
-
-export const HeroSelectDropdown: React.FunctionComponent<
-  HeroSelectDropdownProps
+export const HeroDropdown: React.FunctionComponent<
+  HeroDropdownProps
 > = props => {
-  const { set } = props
-  const [currentLocalHero, setLocalHero] = useState<Hero<any>>(heroList[0])
-  const handleHeroChange = useCallback(
-    hero => {
-      setLocalHero(hero)
-      set(hero)
-    },
-    [setLocalHero, set]
-  )
+  const { set, value } = props
   return (
-    <HeroSelectDropdownInner
+    <HeroDropdownInner
       items={heroList}
-      onItemSelect={handleHeroChange}
+      onItemSelect={set}
       itemRenderer={(hero, { handleClick, modifiers, query }) => (
         <MenuItem
           active={modifiers.active}
@@ -43,10 +34,10 @@ export const HeroSelectDropdown: React.FunctionComponent<
       }
     >
       <Button
-        text={nicifyCamel(currentLocalHero.name)}
+        text={nicifyCamel(value.name)}
         rightIcon="double-caret-vertical"
       />
-    </HeroSelectDropdownInner>
+    </HeroDropdownInner>
   )
 }
 

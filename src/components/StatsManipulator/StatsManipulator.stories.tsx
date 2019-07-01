@@ -1,10 +1,10 @@
 import { storiesOf } from '@storybook/react'
 import React, { useState } from 'react'
 
-import { Stats } from '.'
+import { StatsManipulator } from './index'
 import { HeroStats } from 'types'
 
-storiesOf('Stats', module)
+storiesOf('StatsManipulator', module)
   .add('the stats panel', () => {
     const stats: HeroStats = {
       AGI: 7,
@@ -14,7 +14,9 @@ storiesOf('Stats', module)
       PER: 6,
       STR: 9,
     }
-    return <Stats stats={stats} set={newStats => console.log(newStats)} />
+    return (
+      <StatsManipulator stats={stats} set={newStats => console.log(newStats)} />
+    )
   })
   .add('with tester comp', () => {
     return <Tester />
@@ -29,5 +31,5 @@ const Tester: React.FunctionComponent<{}> = props => {
     PER: 6,
     STR: 9,
   })
-  return <Stats stats={stats} set={setStats} />
+  return <StatsManipulator stats={stats} set={setStats} />
 }
