@@ -2,8 +2,8 @@ import React from 'react'
 import { MultiSelect } from '@blueprintjs/select'
 import { HeroClassName } from '../../types'
 import { classes } from '../../data'
+import { nicifyCamel, highlightText } from '../../utils'
 import { MenuItem, Icon, Button } from '@blueprintjs/core'
-//import css from "./stat.css";
 
 import produce from 'immer'
 
@@ -70,53 +70,4 @@ export const ClassPicker: React.FunctionComponent<ClassPickerProps> = props => {
       placeholder="Select classes"
     />
   )
-}
-
-function nicifyCamel(text: string) {
-  return (
-    text[0].toUpperCase() +
-    text
-      .replace(/([a-z])([A-Z])/g, '$1 $2')
-      .slice(1)
-      .replace(' Of ', ' of ')
-  )
-}
-
-function highlightText(text: string, query: string) {
-  let lastIndex = 0
-  const words = query
-    .split(/\s+/)
-    .filter(word => word.length > 0)
-    .map(escapeRegExpChars)
-  if (words.length === 0) {
-    return [text]
-  }
-  const regexp = new RegExp(words.join('|'), 'gi')
-  const tokens: React.ReactNode[] = []
-  while (true) {
-    const match = regexp.exec(text)
-    if (!match) {
-      break
-    }
-    const length = match[0].length
-    const before = text.slice(lastIndex, regexp.lastIndex - length)
-    if (before.length > 0) {
-      tokens.push(before)
-    }
-    lastIndex = regexp.lastIndex
-    tokens.push(
-      <strong style={{ textDecoration: 'underline' }} key={lastIndex}>
-        {match[0]}
-      </strong>
-    )
-  }
-  const rest = text.slice(lastIndex)
-  if (rest.length > 0) {
-    tokens.push(rest)
-  }
-  return tokens
-}
-
-function escapeRegExpChars(text: string) {
-  return text.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1')
 }
