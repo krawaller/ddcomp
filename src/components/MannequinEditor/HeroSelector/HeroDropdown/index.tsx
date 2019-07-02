@@ -1,9 +1,9 @@
 import React from 'react'
 import { Select } from '@blueprintjs/select'
 import { Button, MenuItem } from '@blueprintjs/core'
-import { Hero } from '../../../types'
-import { heroList } from '../../../data'
-import { highlightText, nicifyCamel } from '../../../utils'
+import { Hero } from '../../../../types'
+import { heroList } from '../../../../data'
+import { highlightText, nicifyCamel } from '../../../../utils'
 
 type HeroDropdownProps = {
   set: (hero: Hero) => void

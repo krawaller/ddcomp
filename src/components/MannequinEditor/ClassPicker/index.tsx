@@ -1,8 +1,8 @@
 import React from 'react'
 import { MultiSelect } from '@blueprintjs/select'
-import { HeroClassName } from '../../types'
-import { classes } from '../../data'
-import { nicifyCamel, highlightText } from '../../utils'
+import { HeroClassName } from '../../../types'
+import { classes } from '../../../data'
+import { nicifyCamel, highlightText } from '../../../utils'
 import { MenuItem, Icon, Button } from '@blueprintjs/core'
 
 import produce from 'immer'

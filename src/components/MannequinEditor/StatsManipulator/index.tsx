@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeroStats } from '../../types'
+import { HeroStats } from '../../../types'
 import css from './StatsManipulator.css'
 import { SingleStat } from './SingleStat/index'
 import produce from 'immer'

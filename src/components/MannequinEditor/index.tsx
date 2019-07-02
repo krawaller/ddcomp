@@ -1,38 +1,27 @@
-import React, { useState } from 'react'
-import { HeroStats, HeroClassName, Hero } from 'types'
+import React from 'react'
+import { HeroStats, HeroClassName, Hero, Mannequin } from '../../types'
 
-import { heroList } from '../../data'
-import { StatsManipulator } from '../StatsManipulator'
-import { HeroSelector } from '../HeroSelector'
-import { ClassPicker } from '../ClassPicker'
+import { StatsManipulator } from './StatsManipulator'
+import { HeroSelector } from './HeroSelector'
+import { ClassPicker } from './ClassPicker'
+import { heroToMannequin } from '../../utils'
 
 type MannequinEditorProps = {
-  onChange: (mannequin: Mannequin) => void
+  set: (mannequin: Mannequin) => void
+  mannequin: Mannequin
 }
 
-export type Mannequin = {
-  stats: HeroStats
-  classes: HeroClassName[]
-}
-
-function heroToMannequin(hero: Hero): Mannequin {
-  return {
-    stats: hero.stats,
-    classes: (Object.keys(hero.classes) as unknown) as HeroClassName[],
-  }
-}
-
-const defaultMannequin = heroToMannequin(heroList[0])
+const customHeroName = 'This custom hero'
 
 export const MannequinEditor: React.FunctionComponent<
   MannequinEditorProps
 > = props => {
-  const [mannequin, setMannequin] = useState<Mannequin>(defaultMannequin)
+  const { mannequin, set } = props
   const handleStatsChange = (stats: HeroStats) =>
-    setMannequin({ stats, classes: mannequin.classes })
+    set({ stats, classes: mannequin.classes, name: customHeroName })
   const handleClassesChange = (classes: HeroClassName[]) =>
-    setMannequin({ classes, stats: mannequin.stats })
-  const handleHeroSelect = (hero: Hero) => setMannequin(heroToMannequin(hero))
+    set({ classes, stats: mannequin.stats, name: customHeroName })
+  const handleHeroSelect = (hero: Hero) => set(heroToMannequin(hero))
 
   return (
     <React.Fragment>
@@ -40,6 +29,7 @@ export const MannequinEditor: React.FunctionComponent<
       <hr />
       <ClassPicker checked={mannequin.classes} set={handleClassesChange} />
       <StatsManipulator stats={mannequin.stats} set={handleStatsChange} />
+      <h4>{mannequin.name}</h4>
     </React.Fragment>
   )
 }

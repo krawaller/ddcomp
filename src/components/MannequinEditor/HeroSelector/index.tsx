@@ -3,7 +3,7 @@ import { Button } from '@blueprintjs/core'
 
 import { HeroDropdown } from './HeroDropdown'
 
-import { heroList } from '../../data'
+import { heroList } from '../../../data'
 import { Hero } from 'types'
 
 type HeroSelectorProps = {
@@ -18,7 +18,10 @@ export const HeroSelector: React.FunctionComponent<
   const handleChangeInnerHero = useCallback(hero => setInnerHero(hero), [
     setInnerHero,
   ])
-  const handleChooseHero = useCallback(hero => set(currentInnerHero), [set])
+  const handleChooseHero = useCallback(() => set(currentInnerHero), [
+    set,
+    currentInnerHero,
+  ])
   return (
     <React.Fragment>
       <HeroDropdown set={handleChangeInnerHero} value={currentInnerHero} />{' '}
