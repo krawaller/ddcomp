@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "storybook": "start-storybook"
+    "storybook": "start-storybook",
+    "test": "jest"
   },
   "name": "ddcomp",
   "version": "1.0.0",
@@ -17,14 +18,20 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
     "@storybook/addon-knobs": "^5.1.9",
     "@storybook/react": "^5.1.9",
+    "@types/jest": "^24.0.15",
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/storybook__addon-knobs": "^5.0.1",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
     "css-modules-typescript-loader": "^2.0.4",
+    "jest": "^24.8.0",
     "storybook-addon-jsx": "^7.1.2",
     "style-loader": "^0.23.1",
     "typescript": "^3.5.2"
