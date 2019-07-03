@@ -1,13 +1,6 @@
-import {
-  RawSkillBook,
-  SkillBook,
-  SkillName,
-  Skill,
-  RawSkill,
-  HeroBase,
-  SomeHeroes,
-} from '../types'
+import { RawSkillBook, SkillBook, Skill, SomeHeroes } from '../types'
 import { heroes } from './heroes'
+import { testSkillViability } from '../utils/testSkillViability'
 
 export const rawSkills: RawSkillBook = {
   alchemy: {
@@ -372,29 +365,22 @@ export const rawSkills: RawSkillBook = {
   },
 }
 
-export const skills = Object.keys(rawSkills).reduce(
-  (mem: Partial<SkillBook>, skillName: SkillName) => ({
+const heroList = Object.values(heroes)
+
+export const skills = Object.values(rawSkills).reduce(
+  (mem: Partial<SkillBook>, skill) => ({
     ...mem,
-    [skillName]: {
-      ...(rawSkills[skillName] as RawSkill),
-      startSkillFor: Object.keys(heroes).reduce(
-        (s: SomeHeroes, heroName: HeroBase) => ({
-          ...s,
-          ...(heroes[heroName].startSkills[skillName] && {
-            [heroName]: true,
-          }),
-        }),
-        {} as SomeHeroes
-      ),
-      suggestedFor: Object.keys(heroes).reduce(
-        (s: SomeHeroes, heroName: HeroBase) => ({
-          ...s,
-          ...(heroes[heroName].suggestedSkills[skillName] && {
-            [heroName]: true,
-          }),
-        }),
-        {} as SomeHeroes
-      ),
+    [skill.name]: {
+      ...skill,
+      startSkillFor: heroList
+        .filter(hero => hero.startSkills[skill.name])
+        .reduce((mem, h) => ({ ...mem, [h.name]: true }), {} as SomeHeroes),
+      suggestedFor: heroList
+        .filter(hero => hero.suggestedSkills[skill.name])
+        .reduce((mem, h) => ({ ...mem, [h.name]: true }), {} as SomeHeroes),
+      viableFor: heroList
+        .filter(hero => testSkillViability({ hero, skill }))
+        .reduce((mem, h) => ({ ...mem, [h.name]: true }), {} as SomeHeroes),
     } as Skill,
   }),
   {} as Partial<SkillBook>

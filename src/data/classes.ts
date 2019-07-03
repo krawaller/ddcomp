@@ -1,31 +1,32 @@
-import { Classes, Class, HeroBase } from '../types';
-import { heroes, skills } from './';
+import { Classes } from '../types'
+import { heroes, skills } from './'
 
-export const classes = Object.keys(heroes).reduce(
-  (heroMem, heroName: HeroBase) => Object.keys(heroes[heroName].classes).reduce(
-    (classMem, className) => ({
-      ...classMem,
-      [className]: {
-        name: className,
-        heroes: {
-          ...(classMem[className]||{}).heroes || {},
-          [heroName]: true
+export const classes = Object.values(heroes).reduce(
+  (heroMem, hero) =>
+    Object.keys(hero.classes).reduce(
+      (classMem, className) => ({
+        ...classMem,
+        [className]: {
+          name: className,
+          heroes: {
+            ...((classMem[className] || {}).heroes || {}),
+            [hero.name]: true,
+          },
+          skills: {
+            ...((classMem[className] || {}).skills || {}),
+            ...Object.values(skills).reduce(
+              (skillMem, skill) => ({
+                ...skillMem,
+                ...((skill.classes || {})[className] && {
+                  [skill.name]: true,
+                }),
+              }),
+              {}
+            ),
+          },
         },
-        skills: {
-          ...(classMem[className]||{}).skills || {},
-          ...Object.keys(skills).reduce(
-            (skillMem, skillName) => ({
-              ...skillMem,
-              ...(skills[skillName].classes||{})[className] && {
-                [skillName]: true
-              }
-            }),
-            {}
-          )
-        }
-      }
-    }),
-    heroMem
-  ),
+      }),
+      heroMem
+    ),
   {}
-) as Classes;
+) as Classes
