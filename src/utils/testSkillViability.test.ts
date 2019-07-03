@@ -58,9 +58,15 @@ const tests: ViabilityTest[] = [
     result: false,
   },
   {
-    desc: 'when skill lists maxStats we dont exceed',
+    desc: 'when skill lists maxStats we equal',
     skill: { maxStats: { AGI: 8, STR: 8 } },
     hero: { classes: {}, stats: makeStatLine(8) },
+    result: false,
+  },
+  {
+    desc: 'when skill lists maxStats we are lower than',
+    skill: { maxStats: { AGI: 8, STR: 8 } },
+    hero: { classes: {}, stats: makeStatLine(7) },
     result: true,
   },
 ]
