@@ -1,8 +1,9 @@
-import { HeroStats, SomeClasses, RawSkill } from '../types'
+import { HeroStats, SomeClasses, RawSkill, HeroBase } from '../types'
 
 export interface TestHero {
   stats: HeroStats
   classes: SomeClasses
+  name?: HeroBase
 }
 
 interface TestSkillViabilityArgs {
@@ -37,6 +38,13 @@ export function testSkillViability(args: TestSkillViabilityArgs): boolean {
   const skillsMaxStats = Object.entries(skill.maxStats || {})
   if (skillsMaxStats.length) {
     if (!skillsMaxStats.every(([name, val]) => hero.stats[name] < val!)) {
+      return false
+    }
+  }
+
+  const skillCharacters = Object.keys(skill.characters || {})
+  if (skillCharacters.length) {
+    if (!skillCharacters.some(name => hero.name === name)) {
       return false
     }
   }

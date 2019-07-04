@@ -8,78 +8,106 @@ type ViabilityTest = {
   desc: string
 }
 
-const tests: ViabilityTest[] = [
-  {
-    desc: 'for skill with no conditions',
-    skill: {},
-    hero: { classes: {}, stats: makeStatLine(7) },
-    result: true,
-  },
-  {
-    desc: 'when skill lists classes we dont have',
-    skill: { classes: { fighter: true, wild: true } },
-    hero: { classes: { warlock: true }, stats: makeStatLine(7) },
-    result: false,
-  },
-  {
-    desc: 'when skill lists classes we have',
-    skill: { classes: { fighter: true, wild: true } },
-    hero: { classes: { wild: true }, stats: makeStatLine(7) },
-    result: true,
-  },
-  {
-    desc: 'when skill lists stats we dont match',
-    skill: { stats: { STR: 9, AGI: 9 } },
-    hero: { classes: {}, stats: makeStatLine(8) },
-    result: false,
-  },
-  {
-    desc: 'when skill lists stats we have',
-    skill: { stats: { STR: 9, AGI: 9 } },
-    hero: { classes: {}, stats: statsAnd({ AGI: 9 }, 5) },
-    result: true,
-  },
-  {
-    desc: 'when skill lists andStats we dont match',
-    skill: { andStats: { AGI: 8, STR: 8 } },
-    hero: { classes: {}, stats: statsAnd({ AGI: 8 }, 7) },
-    result: false,
-  },
-  {
-    desc: 'when skill lists andStats we match',
-    skill: { andStats: { AGI: 8, STR: 8 } },
-    hero: { classes: {}, stats: makeStatLine(8) },
-    result: true,
-  },
-  {
-    desc: 'when skill lists maxStats we exceed',
-    skill: { maxStats: { AGI: 8, STR: 8 } },
-    hero: { classes: {}, stats: statsAnd({ STR: 9 }, 7) },
-    result: false,
-  },
-  {
-    desc: 'when skill lists maxStats we equal',
-    skill: { maxStats: { AGI: 8, STR: 8 } },
-    hero: { classes: {}, stats: makeStatLine(8) },
-    result: false,
-  },
-  {
-    desc: 'when skill lists maxStats we are lower than',
-    skill: { maxStats: { AGI: 8, STR: 8 } },
-    hero: { classes: {}, stats: makeStatLine(7) },
-    result: true,
-  },
-]
+const tests: { [desc: string]: ViabilityTest[] } = {
+  'no conditions': [
+    {
+      desc: 'for skill with no conditions',
+      skill: {},
+      hero: { classes: {}, stats: makeStatLine(7) },
+      result: true,
+    },
+  ],
+  'when skill lists classes': [
+    {
+      desc: 'that we dont have',
+      skill: { classes: { fighter: true, wild: true } },
+      hero: { classes: { warlock: true }, stats: makeStatLine(7) },
+      result: false,
+    },
+    {
+      desc: 'when skill lists classes we have',
+      skill: { classes: { fighter: true, wild: true } },
+      hero: { classes: { wild: true }, stats: makeStatLine(7) },
+      result: true,
+    },
+  ],
+  'when skill lists stats': [
+    {
+      desc: 'we dont match',
+      skill: { stats: { STR: 9, AGI: 9 } },
+      hero: { classes: {}, stats: makeStatLine(8) },
+      result: false,
+    },
+    {
+      desc: 'we have',
+      skill: { stats: { STR: 9, AGI: 9 } },
+      hero: { classes: {}, stats: statsAnd({ AGI: 9 }, 5) },
+      result: true,
+    },
+  ],
+  'when skill lists andStats': [
+    {
+      desc: 'we dont match',
+      skill: { andStats: { AGI: 8, STR: 8 } },
+      hero: { classes: {}, stats: statsAnd({ AGI: 8 }, 7) },
+      result: false,
+    },
+    {
+      desc: 'we match',
+      skill: { andStats: { AGI: 8, STR: 8 } },
+      hero: { classes: {}, stats: makeStatLine(8) },
+      result: true,
+    },
+  ],
+  'when skill lists maxStats': [
+    {
+      desc: 'we exceed',
+      skill: { maxStats: { AGI: 8, STR: 8 } },
+      hero: { classes: {}, stats: statsAnd({ STR: 9 }, 7) },
+      result: false,
+    },
+    {
+      desc: 'we equal',
+      skill: { maxStats: { AGI: 8, STR: 8 } },
+      hero: { classes: {}, stats: makeStatLine(8) },
+      result: false,
+    },
+    {
+      desc: 'we are lower than',
+      skill: { maxStats: { AGI: 8, STR: 8 } },
+      hero: { classes: {}, stats: makeStatLine(7) },
+      result: true,
+    },
+  ],
+  'when skill names characters': [
+    {
+      desc: 'not including us',
+      skill: { characters: { corpseBurner: true } },
+      hero: { classes: {}, name: 'charlatanMagician', stats: makeStatLine(7) },
+      result: false,
+    },
+    {
+      desc: 'including us',
+      skill: { characters: { corpseBurner: true } },
+      hero: { classes: {}, name: 'corpseBurner', stats: makeStatLine(7) },
+      result: true,
+    },
+  ],
+}
 
 describe('The testSkillViability function', () => {
-  tests.forEach(t => {
-    const { skill, hero, result, desc } = t
-    describe(desc, () => {
-      test(`We get ${result}`, () => {
-        expect(testSkillViability({ hero, skill })).toEqual(result)
+  for (const [d, list] of Object.entries(tests)) {
+    describe(d, () => {
+      list.forEach(t => {
+        const { skill, hero, result, desc } = t
+        describe(desc, () => {
+          test(`We get ${result}`, () => {
+            expect(testSkillViability({ hero, skill })).toEqual(result)
+          })
+        })
       })
     })
-  })
+  }
 })
 
 function makeStats(...vals: number[] & { length: 6 }): HeroStats {
