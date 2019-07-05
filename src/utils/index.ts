@@ -1,3 +1,5 @@
 export * from './nicifyCamel'
 export * from './highlightText'
 export * from './heroToMannequin'
+export * from './testSkillViability'
+export * from './mannequinToTestHero'
