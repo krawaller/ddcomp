@@ -1,11 +1,4 @@
-import {
-  SkillBook,
-  SkillName,
-  Release,
-  SomeSkills,
-  SomeClasses,
-  HeroClassName,
-} from './'
+import { Release, SomeSkills, SomeClasses } from './'
 
 export type HeroStats = {
   AGI: number
@@ -48,7 +41,7 @@ export type HeroBase =
   | 'witchSmeller'
   | 'voidWitch'
 
-export type Hero<T = HeroBase> = {
+export interface RawHero<T = HeroBase> {
   name: T
   classes: SomeClasses
   stats: HeroStats
@@ -56,6 +49,12 @@ export type Hero<T = HeroBase> = {
   startSkills: SomeSkills
   suggestedSkills: SomeSkills
   in: Release
+}
+
+export type RawHeroRoster = { [key in HeroBase]: RawHero<key> }
+
+export interface Hero<T = HeroBase> extends RawHero<T> {
+  viableSkills: SomeSkills
 }
 
 export type HeroRoster = { [key in HeroBase]: Hero<key> }

@@ -15,7 +15,7 @@ export const SingleStat: React.FunctionComponent<SingleStatProps> = props => {
       <Button
         disabled={value === 3}
         minimal
-        icon="remove"
+        icon="caret-up"
         onClick={() => set(value - 1)}
       />
       <span className={css.name}>{name}</span>
@@ -23,7 +23,7 @@ export const SingleStat: React.FunctionComponent<SingleStatProps> = props => {
       <Button
         disabled={value === 11}
         minimal
-        icon="add"
+        icon="caret-down"
         onClick={() => set(value + 1)}
       />
     </span>

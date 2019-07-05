@@ -62,7 +62,7 @@ export type SkillName =
   | 'voidwalker'
   | 'warding'
 
-export type RawSkill<T = SkillName> = {
+export interface RawSkill<T = SkillName> {
   name: T
   xp: number
   classes?: SomeClasses
@@ -75,7 +75,7 @@ export type RawSkill<T = SkillName> = {
 
 export type RawSkillBook = { [key in SkillName]: RawSkill<key> }
 
-export type Skill<T = SkillName> = RawSkill<T> & {
+export interface Skill<T = SkillName> extends RawSkill<T> {
   suggestedFor: SomeHeroes
   startSkillFor: SomeHeroes
   viableFor: SomeHeroes
